@@ -7,9 +7,10 @@ namespace LighthouseAPI
     [Route("[controller]")]
     public class NoteController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{id}")]
+        public IActionResult Get(int userID)
         {
+            // TODO: Get all the notes from userID
             return Ok("Hello world!");
         }
     }
