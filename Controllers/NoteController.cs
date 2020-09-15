@@ -1,6 +1,4 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LighthouseAPI
@@ -16,21 +14,21 @@ namespace LighthouseAPI
         }
 
         [HttpGet("get/GetAll")]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_noteService.GetAllUsers());
+            return Ok(await _noteService.GetAllUsers());
         }
 
         [HttpGet("get/{id}")]
-        public IActionResult GetUser(int id)
+        public async Task<IActionResult> GetUser(int id)
         {
-            return Ok(_noteService.GetUserByID(id));
+            return Ok(await _noteService.GetUserByID(id));
         }
 
         [HttpPost("new")]
-        public IActionResult AddUser(UserModel user)
+        public async Task<IActionResult> AddUser(UserModel user)
         {
-            return Ok(_noteService.AddUser(user));
+            return Ok(await _noteService.AddUser(user));
         }
     }
 }

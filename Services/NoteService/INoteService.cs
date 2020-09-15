@@ -1,11 +1,12 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
 
 namespace LighthouseAPI
 {
     public interface INoteService
     {
-        List<UserModel> GetAllUsers();
-        UserModel GetUserByID(int id);
-        List<UserModel> AddUser(UserModel user);
+        Task<ServiceResponse<List<UserModel>>> GetAllUsers();
+        Task<ServiceResponse<UserModel>> GetUserByID(int id);
+        Task<ServiceResponse<List<UserModel>>> AddUser(UserModel user);
     }
 }

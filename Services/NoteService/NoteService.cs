@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -5,20 +6,30 @@ namespace LighthouseAPI
 {
     public class NoteService : INoteService
     {
-        public List<UserModel> AddUser(UserModel user)
+        public async Task<ServiceResponse<List<UserModel>>> AddUser(UserModel user)
         {
+            var response = new ServiceResponse<List<UserModel>>();
+
             MockData.users.Add(user);
-            return MockData.users;
+            response.Data = MockData.users;
+
+            return response;
         }
 
-        public List<UserModel> GetAllUsers()
+        public async Task<ServiceResponse<List<UserModel>>> GetAllUsers()
         {
-            return MockData.users;
+            var response = new ServiceResponse<List<UserModel>>();
+            response.Data = MockData.users;
+
+            return response;
         }
 
-        public UserModel GetUserByID(int id)
+        public async Task<ServiceResponse<UserModel>> GetUserByID(int id)
         {
-            return MockData.users.FirstOrDefault(user => user.UserID == id);
+            var response = new ServiceResponse<UserModel>();
+            response.Data = MockData.users.FirstOrDefault(user => user.UserID == id);
+            
+            return response;
         }
     }
 }
