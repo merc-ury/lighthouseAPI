@@ -5,8 +5,7 @@ namespace LighthouseAPI
     public enum CategoryList 
     {
         Note,
-        Checklist,
-
+        Checklist
     }
 
     public class NoteModel
