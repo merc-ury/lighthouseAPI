@@ -1,5 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using LighthouseAPI.Models;
+using LighthouseAPI.Services;
 
 namespace LighthouseAPI
 {
@@ -26,7 +28,7 @@ namespace LighthouseAPI
         }
 
         [HttpPost("new")]
-        public async Task<IActionResult> AddUser(UserModel user)
+        public async Task<IActionResult> AddUser(User user)
         {
             return Ok(await _noteService.AddUser(user));
         }

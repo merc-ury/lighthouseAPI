@@ -1,14 +1,14 @@
 using System;
 
-namespace LighthouseAPI
+namespace LighthouseAPI.Models
 {
-    public enum CategoryList 
+    public enum CategoryList
     {
         Note,
         Checklist
     }
 
-    public class NoteModel
+    public class Note
     {
         public int NoteID { get; set; }
         public string Title { get; set; }
@@ -16,6 +16,6 @@ namespace LighthouseAPI
         public int Priority { get; set; } = 0;
         public CategoryList Category { get; set; } = CategoryList.Note;
         public DateTime CreatedOn { get; set; }
-        
+
     }
 }

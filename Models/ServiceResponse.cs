@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LighthouseAPI
+namespace LighthouseAPI.Models
 {
     public class ServiceResponse<T>
     {

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace LighthouseAPI
+namespace LighthouseAPI.Models
 {
-    public class UserModel
+    public class User
     {
         public int UserID { get; set; }
         public string Username { get; set; }
         public DateTime CreatedOn { get; set; }
-        public List<NoteModel> Notes { get; set; }
+        public List<Note> Notes { get; set; }
     }
 }
