@@ -19,7 +19,8 @@ namespace LighthouseAPI.Services
         {
             var response = new ServiceResponse<DbSet<User>>();
 
-            _context.Users.Add(user);
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
             response.Data = _context.Users;
 
             return response;

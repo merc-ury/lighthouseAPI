@@ -10,6 +10,7 @@ namespace LighthouseAPI.Models
 
     public class Note
     {
+        public int UserID { get; set; }
         public int NoteID { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }

@@ -3,15 +3,17 @@ using System;
 using LighthouseAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace LighthouseAPI.Migrations
 {
     [DbContext(typeof(LighthouseContext))]
-    partial class LighthouseContextModelSnapshot : ModelSnapshot
+    [Migration("20200921204515_RevisedModels")]
+    partial class RevisedModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

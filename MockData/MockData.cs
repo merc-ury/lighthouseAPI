@@ -13,21 +13,12 @@ namespace LighthouseAPI
                 UserID = 0,
                 Username = "Test123",
                 CreatedOn = DateTime.Now,
-                Notes = new List<Note>
-                {
-                    new Note { Title = "Test!!!" }
-                }
             },
             new User
             {
                 UserID = 1,
                 Username = "boobs",
-                CreatedOn = DateTime.Now,
-                Notes = new List<Note>
-                {
-                    new Note { Title = "dfsfsfsfdsfsdas!!" },
-                    new Note { Title = "22222222222222" }
-                }
+                CreatedOn = DateTime.Now
             }
         };
     }

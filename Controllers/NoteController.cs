@@ -6,7 +6,7 @@ using LighthouseAPI.Services;
 namespace LighthouseAPI
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class NoteController : ControllerBase
     {
         private readonly INoteService _noteService;
@@ -15,19 +15,19 @@ namespace LighthouseAPI
             _noteService = noteService;
         }
 
-        [HttpGet("get/GetAll")]
+        [HttpGet("get/all")]
         public async Task<IActionResult> Get()
         {
             return Ok(await _noteService.GetAllUsers());
         }
 
-        [HttpGet("get/{id}")]
+        [HttpGet("get/user/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
             return Ok(await _noteService.GetUserByID(id));
         }
 
-        [HttpPost("new")]
+        [HttpPost("post/add")]
         public async Task<IActionResult> AddUser(User user)
         {
             return Ok(await _noteService.AddUser(user));
