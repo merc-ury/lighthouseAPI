@@ -5,7 +5,7 @@ using LighthouseAPI.Models;
 
 namespace LighthouseAPI.Services
 {
-    public interface INoteService
+    public interface IDatabaseService
     {
         Task<ServiceResponse<DbSet<User>>> GetAllUsers();
         Task<ServiceResponse<User>> GetUserByID(int id);

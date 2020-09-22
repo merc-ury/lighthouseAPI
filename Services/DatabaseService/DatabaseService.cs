@@ -7,10 +7,10 @@ using LighthouseAPI.Entities;
 
 namespace LighthouseAPI.Services
 {
-    public class NoteService : INoteService
+    public class DatabaseService : IDatabaseService
     {
         private readonly LighthouseContext _context;
-        public NoteService(LighthouseContext context)
+        public DatabaseService(LighthouseContext context)
         {
             _context = context;   
         }

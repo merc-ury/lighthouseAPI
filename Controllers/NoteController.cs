@@ -9,28 +9,28 @@ namespace LighthouseAPI
     [Route("api/[controller]")]
     public class NoteController : ControllerBase
     {
-        private readonly INoteService _noteService;
-        public NoteController(INoteService noteService)
+        private readonly IDatabaseService _dbService;
+        public NoteController(IDatabaseService dbService)
         {
-            _noteService = noteService;
+            _dbService = dbService;
         }
 
         [HttpGet("get/all")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _noteService.GetAllUsers());
+            return Ok(await _dbService.GetAllUsers());
         }
 
         [HttpGet("get/user/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            return Ok(await _noteService.GetUserByID(id));
+            return Ok(await _dbService.GetUserByID(id));
         }
 
         [HttpPost("post/add")]
         public async Task<IActionResult> AddUser(User user)
         {
-            return Ok(await _noteService.AddUser(user));
+            return Ok(await _dbService.AddUser(user));
         }
     }
 }
