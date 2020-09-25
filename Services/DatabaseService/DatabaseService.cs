@@ -15,6 +15,17 @@ namespace LighthouseAPI.Services
             _context = context;   
         }
 
+        public async Task<ServiceResponse<DbSet<Note>>> AddNote(Note note)
+        {
+            var response = new ServiceResponse<DbSet<Note>>();
+
+            await _context.Notes.AddAsync(note);
+            await _context.SaveChangesAsync();
+            response.Data = _context.Notes;
+
+            return response;
+        }
+
         public async Task<ServiceResponse<DbSet<User>>> AddUser(User user)
         {
             var response = new ServiceResponse<DbSet<User>>();
@@ -26,10 +37,26 @@ namespace LighthouseAPI.Services
             return response;
         }
 
+        public async Task<ServiceResponse<DbSet<Note>>> GetAllNotes()
+        {
+            var response = new ServiceResponse<DbSet<Note>>();
+            response.Data = _context.Notes;
+
+            return response;
+        }
+
         public async Task<ServiceResponse<DbSet<User>>> GetAllUsers()
         {
             var response = new ServiceResponse<DbSet<User>>();
             response.Data = _context.Users;
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<Note>> GetNoteByID(int id)
+        {
+            var response = new ServiceResponse<Note>();
+            response.Data = _context.Notes.FirstOrDefault(note => note.NoteID == id);
 
             return response;
         }

@@ -7,10 +7,10 @@ namespace LighthouseAPI
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NoteController : ControllerBase 
+    public class UserController : ControllerBase
     {
         private readonly IDatabaseService _dbService;
-        public NoteController(IDatabaseService dbService)
+        public UserController(IDatabaseService dbService)
         {
             _dbService = dbService;
         }
@@ -18,19 +18,19 @@ namespace LighthouseAPI
         [HttpGet("get/all")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _dbService.GetAllNotes());
+            return Ok(await _dbService.GetAllUsers());
         }
 
         [HttpGet("get/{id}")]
-        public async Task<IActionResult> GetNote(int id)
+        public async Task<IActionResult> GetUser(int id)
         {
-            return Ok(await _dbService.GetNoteByID(id));
+            return Ok(await _dbService.GetUserByID(id));
         }
 
         [HttpPost("post/add")]
-        public async Task<IActionResult> AddNote(Note note)
+        public async Task<IActionResult> AddUser(User user)
         {
-            return Ok(await _dbService.AddNote(note));
+            return Ok(await _dbService.AddUser(user));
         }
     }
 }
