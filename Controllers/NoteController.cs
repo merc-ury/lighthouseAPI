@@ -32,5 +32,11 @@ namespace LighthouseAPI
         {
             return Ok(await _dbService.AddNote(note));
         }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateNote(Note note)
+        {
+            return Ok(await _dbService.UpdateNote(note));
+        }
     }
 }

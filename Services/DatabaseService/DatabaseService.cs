@@ -68,5 +68,43 @@ namespace LighthouseAPI.Services
 
             return response;
         }
+
+        public async Task<ServiceResponse<Note>> UpdateNote(Note note)
+        {
+            var response = new ServiceResponse<Note>();
+
+            Note updatedNote = _context.Notes.FirstOrDefault(n => n.NoteID == note.NoteID);
+            updatedNote.NoteID = note.NoteID;
+            updatedNote.UserID = note.UserID;
+            updatedNote.Title = note.Title;
+            updatedNote.Content = note.Content;
+            updatedNote.Category = note.Category;
+            updatedNote.Priority = note.Priority;
+            updatedNote.CreatedOn = note.CreatedOn;
+            
+            response.Data = updatedNote;
+            
+            _context.Notes.Update(updatedNote);
+            await _context.SaveChangesAsync();
+            
+            return response;
+        }
+
+        public async Task<ServiceResponse<User>> UpdateUser(User user)
+        {
+            var response = new ServiceResponse<User>();
+
+            User updatedUser = _context.Users.FirstOrDefault(u => u.UserID == user.UserID);
+            updatedUser.UserID = user.UserID;
+            updatedUser.Username = user.Username;
+            updatedUser.CreatedOn = user.CreatedOn;
+
+            response.Data = updatedUser;
+
+            _context.Users.Update(updatedUser);
+            await _context.SaveChangesAsync();
+
+            return response;
+        }
     }
 }
