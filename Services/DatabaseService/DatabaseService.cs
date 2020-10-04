@@ -12,7 +12,7 @@ namespace LighthouseAPI.Services
         private readonly LighthouseContext _context;
         public DatabaseService(LighthouseContext context)
         {
-            _context = context;   
+            _context = context;
         }
 
         public async Task<ServiceResponse<DbSet<Note>>> AddNote(Note note)
@@ -81,12 +81,12 @@ namespace LighthouseAPI.Services
             updatedNote.Category = note.Category;
             updatedNote.Priority = note.Priority;
             updatedNote.CreatedOn = note.CreatedOn;
-            
+
             response.Data = updatedNote;
-            
+
             _context.Notes.Update(updatedNote);
             await _context.SaveChangesAsync();
-            
+
             return response;
         }
 
@@ -96,7 +96,8 @@ namespace LighthouseAPI.Services
 
             User updatedUser = _context.Users.FirstOrDefault(u => u.UserID == user.UserID);
             updatedUser.UserID = user.UserID;
-            updatedUser.Username = user.Username;
+            updatedUser.Email = user.Email;
+            updatedUser.Name = user.Name;
             updatedUser.CreatedOn = user.CreatedOn;
 
             response.Data = updatedUser;

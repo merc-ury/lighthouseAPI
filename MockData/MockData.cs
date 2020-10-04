@@ -11,13 +11,15 @@ namespace LighthouseAPI
             new User
             {
                 UserID = 0,
-                Username = "Test123",
+                Email = "test@test.com",
+                Name = "Andy",
                 CreatedOn = DateTime.Now,
             },
             new User
             {
                 UserID = 1,
-                Username = "boobs",
+                Email = "email@email.com",
+                Name = "John",
                 CreatedOn = DateTime.Now
             }
         };
