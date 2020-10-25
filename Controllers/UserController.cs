@@ -38,5 +38,11 @@ namespace LighthouseAPI
         {
             return Ok(await _dbService.UpdateUser(user));
         }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteUser(User user)
+        {
+            return Ok(await _dbService.DeleteUser(user));
+        }
     }
 }

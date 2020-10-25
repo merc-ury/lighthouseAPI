@@ -37,8 +37,31 @@ namespace LighthouseAPI.Services
             return response;
         }
 
+        public async Task<ServiceResponse<DbSet<Note>>> DeleteNote(Note note)
+        {
+            var response = new ServiceResponse<DbSet<Note>>();
+
+            _context.Notes.Remove(note);
+            await _context.SaveChangesAsync();
+            response.Data = _context.Notes;
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<DbSet<User>>> DeleteUser(User user)
+        {
+            var response = new ServiceResponse<DbSet<User>>();
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            response.Data = _context.Users;
+
+            return response;
+        }
+
         public async Task<ServiceResponse<DbSet<Note>>> GetAllNotes()
         {
+            await Task.Delay(0);
             var response = new ServiceResponse<DbSet<Note>>();
             response.Data = _context.Notes;
 
@@ -47,6 +70,7 @@ namespace LighthouseAPI.Services
 
         public async Task<ServiceResponse<DbSet<User>>> GetAllUsers()
         {
+            await Task.Delay(0);
             var response = new ServiceResponse<DbSet<User>>();
             response.Data = _context.Users;
 
@@ -55,6 +79,7 @@ namespace LighthouseAPI.Services
 
         public async Task<ServiceResponse<Note>> GetNoteByID(int id)
         {
+            await Task.Delay(0);
             var response = new ServiceResponse<Note>();
             response.Data = _context.Notes.FirstOrDefault(note => note.NoteID == id);
 
@@ -63,6 +88,7 @@ namespace LighthouseAPI.Services
 
         public async Task<ServiceResponse<User>> GetUserByID(int id)
         {
+            await Task.Delay(0);
             var response = new ServiceResponse<User>();
             response.Data = _context.Users.FirstOrDefault(user => user.UserID == id);
 

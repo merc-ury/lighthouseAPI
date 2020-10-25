@@ -7,7 +7,7 @@ namespace LighthouseAPI
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NoteController : ControllerBase 
+    public class NoteController : ControllerBase
     {
         private readonly IDatabaseService _dbService;
         public NoteController(IDatabaseService dbService)
@@ -37,6 +37,12 @@ namespace LighthouseAPI
         public async Task<IActionResult> UpdateNote(Note note)
         {
             return Ok(await _dbService.UpdateNote(note));
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteNote(Note note)
+        {
+            return Ok(await _dbService.DeleteNote(note));
         }
     }
 }
