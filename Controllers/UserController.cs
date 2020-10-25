@@ -27,7 +27,7 @@ namespace LighthouseAPI
             return Ok(await _dbService.GetUserByID(id));
         }
 
-        [HttpPost("post/add")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddUser(User user)
         {
             return Ok(await _dbService.AddUser(user));

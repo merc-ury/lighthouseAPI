@@ -15,66 +15,65 @@ namespace LighthouseAPI.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<DbSet<Note>>> AddNote(Note note)
+        public async Task<ServiceResponse<List<Note>>> AddNote(Note note)
         {
-            var response = new ServiceResponse<DbSet<Note>>();
+            var response = new ServiceResponse<List<Note>>();
 
             await _context.Notes.AddAsync(note);
             await _context.SaveChangesAsync();
-            response.Data = _context.Notes;
+            response.Data = await _context.Notes.ToListAsync();
 
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<User>>> AddUser(User user)
+        public async Task<ServiceResponse<List<User>>> AddUser(User user)
         {
-            var response = new ServiceResponse<DbSet<User>>();
+            var response = new ServiceResponse<List<User>>();
 
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
-            response.Data = _context.Users;
+            response.Data = await _context.Users.ToListAsync();
 
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<Note>>> DeleteNote(int id)
+        public async Task<ServiceResponse<List<Note>>> DeleteNote(int id)
         {
-            var response = new ServiceResponse<DbSet<Note>>();
+            var response = new ServiceResponse<List<Note>>();
 
             var note = _context.Notes.FirstOrDefault(n => n.NoteID == id);
             _context.Notes.Remove(note);
             await _context.SaveChangesAsync();
-            response.Data = _context.Notes;
+            response.Data = await _context.Notes.ToListAsync();
 
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<User>>> DeleteUser(int id)
+        public async Task<ServiceResponse<List<User>>> DeleteUser(int id)
         {
-            var response = new ServiceResponse<DbSet<User>>();
+            var response = new ServiceResponse<List<User>>();
 
             var user = _context.Users.FirstOrDefault(u => u.UserID == id);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
-            response.Data = _context.Users;
+            response.Data = await _context.Users.ToListAsync();
 
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<Note>>> GetAllNotes()
+        public async Task<ServiceResponse<List<Note>>> GetAllNotes(int userID)
         {
-            await Task.Delay(0);
-            var response = new ServiceResponse<DbSet<Note>>();
-            response.Data = _context.Notes;
+            var response = new ServiceResponse<List<Note>>();
+            var notes = await _context.Notes.Where(note => note.UserID == userID).ToListAsync();
+            response.Data = notes;
 
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<User>>> GetAllUsers()
+        public async Task<ServiceResponse<List<User>>> GetAllUsers()
         {
-            await Task.Delay(0);
-            var response = new ServiceResponse<DbSet<User>>();
-            response.Data = _context.Users;
+            var response = new ServiceResponse<List<User>>();
+            response.Data = await _context.Users.ToListAsync();
 
             return response;
         }

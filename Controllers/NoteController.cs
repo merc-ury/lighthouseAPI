@@ -15,10 +15,10 @@ namespace LighthouseAPI
             _dbService = dbService;
         }
 
-        [HttpGet("get/all")]
-        public async Task<IActionResult> Get()
+        [HttpGet("get/{id}/all")]
+        public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _dbService.GetAllNotes());
+            return Ok(await _dbService.GetAllNotes(id));
         }
 
         [HttpGet("get/{id}")]
@@ -27,7 +27,7 @@ namespace LighthouseAPI
             return Ok(await _dbService.GetNoteByID(id));
         }
 
-        [HttpPost("post/add")]
+        [HttpPost("add")]
         public async Task<IActionResult> AddNote(Note note)
         {
             return Ok(await _dbService.AddNote(note));
