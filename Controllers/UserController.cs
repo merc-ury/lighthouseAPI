@@ -39,10 +39,10 @@ namespace LighthouseAPI
             return Ok(await _dbService.UpdateUser(user));
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteUser(User user)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
         {
-            return Ok(await _dbService.DeleteUser(user));
+            return Ok(await _dbService.DeleteUser(id));
         }
     }
 }

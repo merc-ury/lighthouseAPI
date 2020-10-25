@@ -37,10 +37,11 @@ namespace LighthouseAPI.Services
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<Note>>> DeleteNote(Note note)
+        public async Task<ServiceResponse<DbSet<Note>>> DeleteNote(int id)
         {
             var response = new ServiceResponse<DbSet<Note>>();
 
+            var note = _context.Notes.FirstOrDefault(n => n.NoteID == id);
             _context.Notes.Remove(note);
             await _context.SaveChangesAsync();
             response.Data = _context.Notes;
@@ -48,10 +49,11 @@ namespace LighthouseAPI.Services
             return response;
         }
 
-        public async Task<ServiceResponse<DbSet<User>>> DeleteUser(User user)
+        public async Task<ServiceResponse<DbSet<User>>> DeleteUser(int id)
         {
             var response = new ServiceResponse<DbSet<User>>();
 
+            var user = _context.Users.FirstOrDefault(u => u.UserID == id);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             response.Data = _context.Users;

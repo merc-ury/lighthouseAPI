@@ -39,10 +39,10 @@ namespace LighthouseAPI
             return Ok(await _dbService.UpdateNote(note));
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteNote(Note note)
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteNote(int id)
         {
-            return Ok(await _dbService.DeleteNote(note));
+            return Ok(await _dbService.DeleteNote(id));
         }
     }
 }
