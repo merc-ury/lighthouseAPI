@@ -29,6 +29,7 @@ namespace LighthouseAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors();
             services.AddScoped<IDatabaseService, DatabaseService>();
 
             services.AddDbContext<LighthouseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
@@ -44,6 +45,13 @@ namespace LighthouseAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors(builder => {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
 
             app.UseRouting();
 
