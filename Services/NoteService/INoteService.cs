@@ -4,13 +4,8 @@ using LighthouseAPI.Models;
 
 namespace LighthouseAPI.Services
 {
-    public interface IDatabaseService
+    public interface INoteService
     {
-        Task<ServiceResponse<List<User>>> GetAllUsers();
-        Task<ServiceResponse<User>> GetUserByID(int id);
-        Task<ServiceResponse<List<User>>> AddUser(User user);
-        Task<ServiceResponse<User>> UpdateUser(User user);
-        Task<ServiceResponse<List<User>>> DeleteUser(int id);
         Task<ServiceResponse<List<Note>>> GetAllNotes(int userID);
         Task<ServiceResponse<Note>> GetNoteByID(int id);
         Task<ServiceResponse<List<Note>>> AddNote(Note note);

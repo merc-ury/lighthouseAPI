@@ -9,40 +9,40 @@ namespace LighthouseAPI
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IDatabaseService _dbService;
-        public UserController(IDatabaseService dbService)
+        private readonly IUserService _userService;
+        public UserController(IUserService userService)
         {
-            _dbService = dbService;
+            _userService = userService;
         }
 
         [HttpGet("get/all")]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _dbService.GetAllUsers());
+            return Ok(await _userService.GetAllUsers());
         }
 
         [HttpGet("get/{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            return Ok(await _dbService.GetUserByID(id));
+            return Ok(await _userService.GetUserByID(id));
         }
 
         [HttpPost("add")]
         public async Task<IActionResult> AddUser(User user)
         {
-            return Ok(await _dbService.AddUser(user));
+            return Ok(await _userService.AddUser(user));
         }
 
         [HttpPut("update")]
         public async Task<IActionResult> UpdateUser(User user)
         {
-            return Ok(await _dbService.UpdateUser(user));
+            return Ok(await _userService.UpdateUser(user));
         }
 
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            return Ok(await _dbService.DeleteUser(id));
+            return Ok(await _userService.DeleteUser(id));
         }
     }
 }

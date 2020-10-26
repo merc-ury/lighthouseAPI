@@ -30,7 +30,9 @@ namespace LighthouseAPI
         {
             services.AddControllers();
             services.AddCors();
-            services.AddScoped<IDatabaseService, DatabaseService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<INoteService, NoteService>();
+            // services.AddScoped<IDatabaseService, DatabaseService>();
 
             services.AddDbContext<LighthouseContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
