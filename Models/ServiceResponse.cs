@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace LighthouseAPI.Models
 {
@@ -6,6 +6,12 @@ namespace LighthouseAPI.Models
     {
         public T Data { get; set; }
         public bool Success { get; set; } = true;
+        public int StatusCode { get; set; }
         public string Message { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }
