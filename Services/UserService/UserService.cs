@@ -24,7 +24,7 @@ namespace LighthouseAPI.Services
 
             if (!existingUsers.Exists(u => user.Email == u.Email))
             {
-                user.UserID = existingUsers.Count + 1; // Increment each userID by 1 when added to DB
+                user.UserID = existingUsers.Count + 1; // increment each userID by 1 when added to DB
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
             }
