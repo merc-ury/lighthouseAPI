@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace LighthouseAPI.Models
 {
@@ -11,7 +12,11 @@ namespace LighthouseAPI.Models
 
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(
+                this,
+                new JsonSerializerSettings {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+                });
         }
     }
 }

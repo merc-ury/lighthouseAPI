@@ -20,9 +20,16 @@ namespace LighthouseAPI.Services
         {
             var response = new ServiceResponse<List<User>>();
 
-            await _context.Users.AddAsync(user);
-            await _context.SaveChangesAsync();
-            response.Data = await _context.Users.ToListAsync();
+            var existingUsers = await _context.Users.ToListAsync();
+
+            if (!existingUsers.Exists(u => user.Email == u.Email))
+            {
+                user.UserID = existingUsers.Count + 1; // Increment each userID by 1 when added to DB
+                await _context.Users.AddAsync(user);
+                await _context.SaveChangesAsync();
+            }
+
+            response.Data = await _context.Users.ToListAsync(); // gets the updated contents of users
 
             return response;
         }
