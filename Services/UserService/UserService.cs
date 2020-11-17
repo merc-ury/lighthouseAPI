@@ -16,10 +16,9 @@ namespace LighthouseAPI.Services
             _context = context;
         }
 
-        public async Task<ServiceResponse<List<User>>> AddUser(User user)
+        public async Task<ServiceResponse<User>> AddUser(User user)
         {
-            var response = new ServiceResponse<List<User>>();
-
+            var response = new ServiceResponse<User>();
             var existingUsers = await _context.Users.ToListAsync();
 
             if (!existingUsers.Exists(u => user.Email == u.Email))
@@ -27,9 +26,10 @@ namespace LighthouseAPI.Services
                 user.UserID = existingUsers.Count + 1; // increment each userID by 1 when added to DB
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
+                response.Data = user; // return the added user
             }
-
-            response.Data = await _context.Users.ToListAsync(); // gets the updated contents of users
+            else
+                response.Data = existingUsers.FirstOrDefault(u => user.Email == u.Email); // return the existing user
 
             return response;
         }

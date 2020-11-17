@@ -8,7 +8,7 @@ namespace LighthouseAPI.Services
     {
         Task<ServiceResponse<List<User>>> GetAllUsers();
         Task<ServiceResponse<User>> GetUserByID(int id);
-        Task<ServiceResponse<List<User>>> AddUser(User user);
+        Task<ServiceResponse<User>> AddUser(User user);
         Task<ServiceResponse<User>> UpdateUser(User user);
         Task<ServiceResponse<List<User>>> DeleteUser(int id);
     }
