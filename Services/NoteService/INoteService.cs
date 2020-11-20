@@ -11,5 +11,6 @@ namespace LighthouseAPI.Services
         Task<ServiceResponse<List<Note>>> AddNote(Note note);
         Task<ServiceResponse<Note>> UpdateNote(Note note);
         Task<ServiceResponse<List<Note>>> DeleteNote(int id);
+        Task<ServiceResponse<int>> GetNoteCount();
     }
 }

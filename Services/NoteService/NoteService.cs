@@ -47,6 +47,15 @@ namespace LighthouseAPI.Services
             return response;
         }
 
+        public async Task<ServiceResponse<int>> GetNoteCount()
+        {
+            var response = new ServiceResponse<int>();
+            var notesLength = await _context.Notes.CountAsync();
+            response.Data = notesLength;
+
+            return response;
+        }
+
         public async Task<ServiceResponse<Note>> GetNoteByID(int id)
         {
             await Task.Delay(0);
